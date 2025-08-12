@@ -10,7 +10,7 @@ async function seedDatabase() {
         dateTime: "Fri Jun 13 2025"
     }, {
         username: "testuser2@test.com",
-        role: 'user',
+        role: 'customer',
         password: "$2b$10$Cacuw9GqchELU3175/3c1uIl1FO/pqBoN1PQ5naFiX2N2QClKYo1u",
         dateTime: "Fri Jun 13 2025"
     }, {

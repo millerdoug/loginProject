@@ -6,22 +6,11 @@ import authReducer from './authSlice';
 const authPersistConfig = {
     key: 'auth',
     storage,
-    whitelist: ['token'],
-};
-const cartPersistConfig = {
-    key: 'cart',
-    storage,
-};
-const checkoutPersistConfig = {
-    key: 'checkout',
-    storage,
 };
 
 export const store = configureStore({
     reducer: {
         auth: persistReducer(authPersistConfig, authReducer),
-        cart: persistReducer(cartPersistConfig, cartReducer),
-        checkout: persistReducer(checkoutPersistConfig, checkoutReducer),
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({

@@ -34,14 +34,14 @@ describe('Auth Routes', () => {
             expect(res.statusCode).toBe(200);
             expect(res.body.role).toBe('admin');
         })
-        it('Returns user data as expected', async () => {
+        it('Returns customer data as expected', async () => {
             const res = await request(app).post('/auth/login')
                 .send({
                     username: 'testuser2@test.com',
                     password: 'password'
                 });
             expect(res.statusCode).toBe(200);
-            expect(res.body.role).toBe('user');
+            expect(res.body.role).toBe('customer');
         })
         it('Fails wrong password', async () => {
             const res = await request(app).post('/auth/login')
@@ -106,12 +106,12 @@ describe('Auth Routes', () => {
                 .send({
                     username: newUserName,
                     password: 'password',
-                    role:'user',
+                    role:'customer',
                 });
             expect(res.statusCode).toBe(201);
             expect(res.body.message).toBe('User created');
             const newUser = await User.findOne({username: newUserName});
-            expect(newUser.role).toBe('user');
+            expect(newUser.role).toBe('customer');
             const users = await User.find({});
             expect(users.length).toBe(5);
         })

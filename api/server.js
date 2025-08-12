@@ -1,11 +1,12 @@
 const express = require("express");
 const app = express();
 const cors = require('cors');
+const connectDb = require("./connection/connection");
 const authRoutes = require("./routes/auth");
 
-const UI_PORT = process.env.UI_PORT || 5173;
+const UI_PORT = process.env.UI_PORT || 3000;
 const UI_HOST = process.env.UI_HOST || 'localhost';
-const API_PORT = process.env.API_PORT || 8080;
+const API_PORT = process.env.API_PORT || 8081;
 
 const allowedOrigins = [
     'http://localhost:5173',
