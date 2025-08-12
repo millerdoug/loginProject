@@ -1,18 +1,28 @@
 import React from 'react';
 import {useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import {Link} from 'react-router-dom';
 import {useNavigate} from 'react-router-dom';
 import api from '../api';
+import {login} from "../slices/authSlice";
 
 function Login() {
-
+    const dispatch = useDispatch();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
     const handleLogin = async () => {
         try {
-            await api.post('/auth/login', {username, password});
+            const res = await api.post('/auth/login', {username, password});
+
+
+            if (res.status === 200) {
+                dispatch(login({role: res.data.role}));
+                navigate("/");
+            } else {
+                setError("Login failed");
+            }
             navigate('/');
         } catch (err) {
             console.error(err);

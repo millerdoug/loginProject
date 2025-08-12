@@ -54,6 +54,14 @@ function Register() {
                     onChange={e => setPassword(e.target.value)}
                     className="input-field"
                 />
+
+                <label className="form-label">Role Requested</label>
+                <input
+                    name="role"
+                    placeholder="admin"
+                    onChange={e => setPassword(e.target.value)}
+                    className="input-field"
+                />
                 <button onClick={handleRegister} className="form-button button">
                     Register
                 </button>
