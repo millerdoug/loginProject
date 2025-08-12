@@ -2,9 +2,6 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User.model');
 const bcrypt = require('bcryptjs');
-const mongoose = require("mongoose");
-
-const isProduction = process.env.NODE_ENV === 'production';
 
 router.post('/register', async (req, res) => {
     const {username, password, role} = req.body;

@@ -1,18 +1,11 @@
 const express = require("express");
 const app = express();
-const {globalLimiter} = require("./src/middleware/rateLimiters")
-const connectDb = require("./src/connection");
 const cors = require('cors');
-const authRoutes = require("./src/routes/auth");
-const cookieParser = require('cookie-parser');
+const authRoutes = require("./routes/auth");
 
 const UI_PORT = process.env.UI_PORT || 5173;
 const UI_HOST = process.env.UI_HOST || 'localhost';
 const API_PORT = process.env.API_PORT || 8080;
-
-if (process.env.NODE_ENV !== 'development') {
-    app.use(globalLimiter);
-}
 
 const allowedOrigins = [
     'http://localhost:5173',
@@ -21,7 +14,6 @@ const allowedOrigins = [
     `http://127.0.0.1:${UI_PORT}`
 ];
 
-app.use(cookieParser());
 app.use(cors({
     origin: function (origin, callback) {
         if (!origin || allowedOrigins.includes(origin)) {
